@@ -49,10 +49,10 @@ conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 cur = conn.cursor()
 
 while 1:
-    var = raw_input("Enter your message: ")
-    print (var)
+    new_message = raw_input("Enter your message: ")
+    print (new_message)
     cur.execute("INSERT INTO test_table(message) VALUES (%s);",
-                        [var])
+                        [new_message])
     conn.commit()
     cur.execute("NOTIFY test_table, %s;",
-                        [var])
+                        [new_message])
